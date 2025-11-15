@@ -1,24 +1,24 @@
-# Simple Streamlit Calculator — Code + GitHub + Streamlit Community Cloud (Streamlit Share) Guide
-
-This document contains everything you need to create a **simple calculator** using **Streamlit**, push it to **GitHub**, and deploy it on **Streamlit Community Cloud** (a.k.a. Streamlit Share).
-
----
-
-## What you'll get here
-
-* `app.py` — complete Streamlit app (calculator with expression input, buttons, and session history)
-* `requirements.txt` — dependencies for Streamlit Community Cloud
-* `.gitignore` — recommended ignores
-* Step‑by‑step Git commands to create the repo and push to GitHub
-* Streamlit Community Cloud deployment steps
-
----
-
-## File: `app.py`
-
-```python
-# app.py
 import streamlit as st
+
+st.title("Simple Calculator")
+
+num1 = st.number_input("Enter first number", value=0.0)
+num2 = st.number_input("Enter second number", value=0.0)
+
+operation = st.selectbox("Select operation", ["Add", "Subtract", "Multiply", "Divide"])
+
+if st.button("Calculate"):
+    if operation == "Add":
+        result = num1 + num2
+    elif operation == "Subtract":
+        result = num1 - num2
+    elif operation == "Multiply":
+        result = num1 * num2
+    elif operation == "Divide":
+        result = num1 / num2 if num2 != 0 else "Error: Division by zero"
+
+    st.success(f"Result = {result}")
+
 from math import *
 
 st.set_page_config(page_title="Simple Calculator", layout="centered")
